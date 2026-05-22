@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LofiStudy — Your Cozy Study Space</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Caveat:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+ 
+  <nav class="navbar navbar-expand-lg cozy-nav" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand brand-logo" href="index.html">
+        <i class="bi bi-cup-hot-fill"></i> LofiStudy
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="rooms.html">Study Rooms</a></li>
+          <li class="nav-item"><a class="nav-link" href="timer.html">Timer</a></li>
+          <li class="nav-item"><a class="nav-link" href="notes.html">Notes</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <section class="hero-section" id="hero">
+    <!-- Background video -->
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="videos/bg.mp4" type="video/mp4" />
+    </video>
+    <!-- Dark overlay -->
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content text-center">
+      <p class="hero-label fade-up">☕ your daily study companion</p>
+      <h1 class="hero-heading fade-up delay-1">
+        Study Smarter,<br />
+        <em>Shine Better.</em>
+      </h1>
+      <p class="hero-sub fade-up delay-2">
+        Join thousands of students in warm, distraction-free virtual study rooms.<br />
+        Play lofi beats, set your timer, and get things done — together.
+      </p>
+      <div class="hero-btns fade-up delay-3">
+        <a href="rooms.html" class="btn btn-cozy-primary">
+          <i class="bi bi-door-open"></i> Join a Study Room
+        </a>
+        <a href="timer.html" class="btn btn-cozy-outline">
+          <i class="bi bi-stopwatch"></i> Start Timer
+        </a>
+      </div>
+    </div>
+
+    
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="section-header text-center">
+        <p class="section-tag">what's inside</p>
+        <h2 class="section-title">Everything you need to <em>focus</em></h2>
+      </div>
+
+      <div class="row g-4 mt-2">
+        <div class="col-md-6 col-lg-3">
+          <a href="rooms.html" class="feature-card-link">
+            <div class="feature-card fade-card">
+              <div class="feature-icon">🏡</div>
+              <h3>Study Rooms</h3>
+              <p>Join cozy virtual rooms with fellow students. See who's online and vibe together.</p>
+              <span class="feature-link">Explore rooms <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <a href="timer.html" class="feature-card-link">
+            <div class="feature-card fade-card">
+              <div class="feature-icon">⏳</div>
+              <h3>Pomodoro Timer</h3>
+              <p>Stay on track with a beautiful Pomodoro timer. Work in focused sprints, rest well.</p>
+              <span class="feature-link">Start timer <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <a href="notes.html" class="feature-card-link">
+            <div class="feature-card fade-card">
+              <div class="feature-icon">📝</div>
+              <h3>Sticky Notes</h3>
+              <p>Jot down your thoughts with colorful sticky notes. Your digital corkboard awaits.</p>
+              <span class="feature-link">Take notes <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <a href="about.html" class="feature-card-link">
+            <div class="feature-card fade-card">
+              <div class="feature-icon">🌿</div>
+              <h3>Get to know us</h3>
+              <p>A warm space built for focused, mindful studying. No pressure. Just growth.</p>
+              <span class="feature-link">Learn more <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOOD BANNER -->
+  <section class="mood-banner">
+    <div class="container text-center">
+      <p class="mood-quote">
+        <span class="caveat-text">"A quiet room, a warm cup, and good music — that's all you need."</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="row g-4 text-center">
+        <div class="col-4">
+          <div class="stat-item">
+            <h2 class="stat-number" data-target="3200">0</h2>
+            <p class="stat-label">Students online</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-item">
+            <h2 class="stat-number" data-target="18">0</h2>
+            <p class="stat-label">Study rooms</p>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="stat-item">
+            <h2 class="stat-number" data-target="94">0</h2>
+            <p class="stat-label">Hours studied today</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="cozy-footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4 mb-3 mb-md-0">
+          <span class="footer-brand"><i class="bi bi-cup-hot-fill"></i> LofiStudy</span>
+          <p class="footer-tagline">Stay cozy. Stay focused.</p>
+        </div>
+        <div class="col-md-4 text-center mb-3 mb-md-0">
+          <nav class="footer-nav">
+            <a href="index.html">Home</a>
+            <a href="rooms.html">Rooms</a>
+            <a href="timer.html">Timer</a>
+            <a href="notes.html">Notes</a>
+            <a href="about.html">About</a>
+          </nav>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <p class="footer-copy">© 2026 LofiStudy. Made with love.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

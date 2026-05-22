@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pomodoro Timer — LofiStudy</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Caveat:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<script src="js/timer.js"></script>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg cozy-nav scrolled" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand brand-logo nav-dark" href="index.html">
+        <i class="bi bi-cup-hot-fill"></i> LofiStudy
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="rooms.html">Study Rooms</a></li>
+          <li class="nav-item"><a class="nav-link active" href="timer.html">Timer</a></li>
+          <li class="nav-item"><a class="nav-link" href="notes.html">Notes</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TIMER PAGE -->
+  <main class="timer-page">
+    <div class="container">
+
+      <!-- Page heading -->
+      <div class="text-center mb-5 reveal">
+        <p class="section-tag">stay on track</p>
+        <h1>Pomodoro <em>Timer</em></h1>
+        <p class="timer-page-sub">Work in focused sprints. Rest well. Repeat.</p>
+      </div>
+
+      <div class="row justify-content-center g-4 align-items-start">
+
+        <!-- Main timer card -->
+        <div class="col-lg-5">
+          <div class="timer-card reveal">
+
+            <!-- Mode tabs -->
+            <div class="timer-tabs" role="tablist">
+              <button class="timer-tab active" data-mode="pomodoro"  data-minutes="25" role="tab">Pomodoro</button>
+              <button class="timer-tab"         data-mode="short"    data-minutes="5"  role="tab">Short Break</button>
+              <button class="timer-tab"         data-mode="long"     data-minutes="15" role="tab">Long Break</button>
+            </div>
+
+            <!-- SVG ring timer -->
+            <div class="timer-ring" id="timerRing">
+              <svg viewBox="0 0 220 220" width="220" height="220" xmlns="http://www.w3.org/2000/svg">
+                <circle class="track"    cx="110" cy="110" r="96" />
+                <circle class="progress" cx="110" cy="110" r="96" id="progressRing" />
+              </svg>
+              <div class="timer-display">
+                <span class="timer-time"         id="timerDisplay">25:00</span>
+                <span class="timer-session-label" id="sessionLabel">Focus Time</span>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="timer-controls">
+              <button class="btn btn-cozy-primary" id="startBtn">
+                <i class="bi bi-play-fill"></i> Start
+              </button>
+              <button class="btn btn-cozy-brown"   id="pauseBtn" disabled>
+                <i class="bi bi-pause-fill"></i> Pause
+              </button>
+              <button class="btn btn-cozy-outline timer-reset-btn" id="resetBtn">
+                <i class="bi bi-arrow-counterclockwise"></i> Reset
+              </button>
+            </div>
+
+            <!-- Session dots -->
+            <div class="timer-sessions">
+              <span>Sessions today:</span>
+              <span class="session-dots" id="sessionDots">
+                <span class="session-dot"></span>
+                <span class="session-dot"></span>
+                <span class="session-dot"></span>
+                <span class="session-dot"></span>
+              </span>
+            </div>
+
+          </div><!-- /timer-card -->
+        </div>
+
+        <!-- Side panel -->
+        <div class="col-lg-4">
+
+          <!-- How it works -->
+          <div class="timer-info-card reveal">
+            <h5><i class="bi bi-info-circle"></i> How it works</h5>
+            <ul class="timer-steps">
+              <li>
+                <span class="step-dot">1</span>
+                <span>Set a <strong>25-minute</strong> Pomodoro and hit Start.</span>
+              </li>
+              <li>
+                <span class="step-dot">2</span>
+                <span>Focus fully until the timer rings.</span>
+              </li>
+              <li>
+                <span class="step-dot">3</span>
+                <span>Take a <strong>5-minute</strong> short break.</span>
+              </li>
+              <li>
+                <span class="step-dot">4</span>
+                <span>After 4 sessions, take a <strong>15-minute</strong> long break.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Today's stats -->
+          <div class="timer-info-card reveal mt-3">
+            <h5><i class="bi bi-bar-chart-line"></i> Today's Focus</h5>
+            <div class="focus-stats">
+              <div class="focus-stat">
+                <span class="focus-stat-num" id="statSessions">0</span>
+                <span class="focus-stat-label">Sessions</span>
+              </div>
+              <div class="focus-stat">
+                <span class="focus-stat-num" id="statMinutes">0</span>
+                <span class="focus-stat-label">Minutes focused</span>
+              </div>
+              <div class="focus-stat">
+                <span class="focus-stat-num" id="statBreaks">0</span>
+                <span class="focus-stat-label">Breaks taken</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick navigate -->
+          <div class="timer-info-card reveal mt-3 text-center">
+            <p class="caveat-text" style="font-size:1.15rem;color:var(--brown);">
+              "Flow state begins in 25 minutes."
+            </p>
+            <a href="rooms.html" class="btn btn-cozy-brown btn-sm mt-2">
+              <i class="bi bi-people"></i> Join a Study Room
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Session complete alert banner -->
+  <div class="session-alert" id="sessionAlert">
+    <div class="session-alert-inner">
+      <span class="session-alert-icon" id="alertIcon">🎉</span>
+      <div>
+        <strong id="alertTitle">Session complete!</strong>
+        <p id="alertMsg">Great work! Time for a short break. ☕</p>
+      </div>
+      <button class="session-alert-close" id="alertClose">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="cozy-footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4 mb-3 mb-md-0">
+          <span class="footer-brand"><i class="bi bi-cup-hot-fill"></i> LofiStudy</span>
+          <p class="footer-tagline">Stay cozy. Stay focused.</p>
+        </div>
+        <div class="col-md-4 text-center mb-3 mb-md-0">
+          <nav class="footer-nav">
+            <a href="index.html">Home</a>
+            <a href="rooms.html">Rooms</a>
+            <a href="timer.html">Timer</a>
+            <a href="notes.html">Notes</a>
+            <a href="about.html">About</a>
+          </nav>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <p class="footer-copy">© 2026 LofiStudy. Made with ☕ & love.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/timer.js"></script>
+</body>
+</html>

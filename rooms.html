@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Rooms — LofiStudy</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Caveat:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<script src="js/rooms.js"></script>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg cozy-nav scrolled" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand brand-logo nav-dark" href="index.html">
+        <i class="bi bi-cup-hot-fill"></i> LofiStudy
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="rooms.html">Study Rooms</a></li>
+          <li class="nav-item"><a class="nav-link" href="timer.html">Timer</a></li>
+          <li class="nav-item"><a class="nav-link" href="notes.html">Notes</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="container">
+      <p class="section-tag">find your focus</p>
+      <h1 class="mb-2">Pick your <em>Study Room</em></h1>
+      <p>Browse cozy virtual rooms and study alongside others. Real vibes, real focus.</p>
+
+      <!-- Live summary bar -->
+      <div class="rooms-summary-bar mt-4">
+        <span class="summary-chip"><span class="online-dot"></span> <strong id="totalOnline">247</strong> students online now</span>
+        <span class="summary-chip">🏡 <strong>18</strong> rooms open</span>
+        <span class="summary-chip">🎵 Lofi beats playing</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOMS CONTENT -->
+  <section class="rooms-content py-5">
+    <div class="container">
+
+      <!-- Filter tabs -->
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" data-filter="all">All Rooms</button>
+        <button class="filter-tab" data-filter="focus">🎯 Deep Focus</button>
+        <button class="filter-tab" data-filter="chill">🌿 Chill Study</button>
+        <button class="filter-tab" data-filter="exam">📚 Exam Prep</button>
+        <button class="filter-tab" data-filter="creative">🎨 Creative</button>
+        <button class="filter-tab" data-filter="morning">☀️ Morning</button>
+      </div>
+
+      <!-- Room cards grid -->
+      <div class="row g-4" id="roomsGrid">
+
+        <!-- Room 1 -->
+        <div class="col-sm-6 col-lg-4 room-item" data-category="focus">
+          <div class="room-card fade-card">
+            <span class="room-emoji">🕯️</span>
+            <div class="room-meta">
+              <span class="room-tag">Deep Focus</span>
+              <span class="online-badge"><span class="online-dot"></span> <span class="room-count">34</span> online</span>
+            </div>
+            <h4>Candlelight Library</h4>
+            <p>Quiet and distraction-free. Ideal for long study sessions that demand full concentration.</p>
+            <button class="btn btn-cozy-brown w-100 join-btn" data-room="Candlelight Library">
+              <i class="bi bi-door-open"></i> Join Room
+            </button>
+          </div>
+        </div>
+
+        <!-- Room 2 -->
+        <div class="col-sm-6 col-lg-4 room-item" data-category="chill">
+          <div class="room-card fade-card">
+            <span class="room-emoji">☕</span>
+            <div class="room-meta">
+              <span class="room-tag">Chill Study</span>
+              <span class="online-badge"><span class="online-dot"></span> <span class="room-count">58</span> online</span>
+            </div>
+            <h4>Café Corner</h4>
+            <p>The buzz of a cozy café without the noise. Perfect for light reading and casual studying.</p>
+            <button class="btn btn-cozy-brown w-100 join-btn" data-room="Café Corner">
+              <i class="bi bi-door-open"></i> Join Room
+            </button>
+          </div>
+        </div>
+
+        <!-- Room 3 -->
+        <div class="col-sm-6 col-lg-4 room-item" data-category="exam">
+          <div class="room-card fade-card">
+            <span class="room-emoji">📖</span>
+            <div class="room-meta">
+              <span class="room-tag">Exam Prep</span>
+              <span class="online-badge"><span class="online-dot"></span> <span class="room-count">41</span> online</span>
+            </div>
+            <h4>The Study Hall</h4>
+            <p>Structured and serious. Built for those cramming for finals or tackling tough material.</p>
+            <button class="btn btn-cozy-brown w-100 join-btn" data-room="The Study Hall">
+              <i class="bi bi-door-open"></i> Join Room
+            </button>
+          </div>
+        </div>
+
+        <!-- Room 4 -->
+        <div class="col-sm-6 col-lg-4 room-item" data-category="creative">
+          <div class="room-card fade-card">
+            <span class="room-emoji">🎨</span>
+            <div class="room-meta">
+              <span class="room-tag">Creative</span>
+              <span class="online-badge"><span class="online-dot"></span> <span class="room-count">22</span> online</span>
+            </div>
+            <h4>Artist's Atelier</h4>
+            <p>A creative sanctuary for designers, writers and artists. Inspiration flows freely here.</p>
+            <button class="btn btn-cozy-brown w-100 join-btn" data-room="Artist's Atelier">
+              <i class="bi bi-door-open"></i> Join Room
+            </button>
+          </div>
+        </div>
+
+        <!-- Room 5 -->
+        <div class="col-sm-6 col-lg-4 room-item" data-category="morning">
+          <div class="room-card fade-card">
+            <span class="room-emoji">🌅</span>
+            <div class="room-meta">
+              <span class="room-tag">Morning</span>
+              <span class="online-badge"><span class="online-dot"></span> <span class="room-count">19</span> online</span>
+            </div>
+            <h4>Sunrise Session</h4>
+            <p>Start your day with intention. Early birds gather here for a calm, motivated morning.</p>
+            <button class="btn btn-cozy-brown w-100 join-btn" data-room="Sunrise Session">
+              <i class="bi bi-door-open"></i> Join Room
+            </button>
+          </div>
+        </div>
+
+        <!-- Room 6 -->
+        <div class="col-sm-6 col-lg-4 room-item" data-category="chill">
+          <div class="room-card fade-card">
+            <span class="room-emoji">🌧️</span>
+            <div class="room-meta">
+              <span class="room-tag">Chill Study</span>
+              <span class="online-badge"><span class="online-dot"></span> <span class="room-count">47</span> online</span>
+            </div>
+            <h4>Rainy Day Room</h4>
+            <p>Soft rain sounds and warm light. A comforting space when the weather turns grey.</p>
+            <button class="btn btn-cozy-brown w-100 join-btn" data-room="Rainy Day Room">
+              <i class="bi bi-door-open"></i> Join Room
+            </button>
+          </div>
+        </div>
+
+        <!-- Room 7 -->
+        <div class="col-sm-6 col-lg-4 room-item" data-category="focus">
+          <div class="room-card fade-card">
+            <span class="room-emoji">🌙</span>
+            <div class="room-meta">
+              <span class="room-tag">Deep Focus</span>
+              <span class="online-badge"><span class="online-dot"></span> <span class="room-count">29</span> online</span>
+            </div>
+            <h4>Midnight Flow</h4>
+            <p>For the night owls. Deep work in the quiet hours when the world finally slows down.</p>
+            <button class="btn btn-cozy-brown w-100 join-btn" data-room="Midnight Flow">
+              <i class="bi bi-door-open"></i> Join Room
+            </button>
+          </div>
+        </div>
+
+        <!-- Room 8 -->
+        <div class="col-sm-6 col-lg-4 room-item" data-category="exam">
+          <div class="room-card fade-card">
+            <span class="room-emoji">🧪</span>
+            <div class="room-meta">
+              <span class="room-tag">Exam Prep</span>
+              <span class="online-badge"><span class="online-dot"></span> <span class="room-count">33</span> online</span>
+            </div>
+            <h4>Science Lab</h4>
+            <p>Equations, formulas and experiments. The go-to room for STEM students grinding hard.</p>
+            <button class="btn btn-cozy-brown w-100 join-btn" data-room="Science Lab">
+              <i class="bi bi-door-open"></i> Join Room
+            </button>
+          </div>
+        </div>
+
+        <!-- Room 9 -->
+        <div class="col-sm-6 col-lg-4 room-item" data-category="creative">
+          <div class="room-card fade-card">
+            <span class="room-emoji">✍️</span>
+            <div class="room-meta">
+              <span class="room-tag">Creative</span>
+              <span class="online-badge"><span class="online-dot"></span> <span class="room-count">15</span> online</span>
+            </div>
+            <h4>Writer's Nook</h4>
+            <p>Essays, novels, scripts — bring your words here. A quiet corner for wordsmiths.</p>
+            <button class="btn btn-cozy-brown w-100 join-btn" data-room="Writer's Nook">
+              <i class="bi bi-door-open"></i> Join Room
+            </button>
+          </div>
+        </div>
+
+      </div><!-- /row -->
+
+      <!-- Empty state (hidden by default) -->
+      <div class="rooms-empty text-center py-5" id="emptyState" style="display:none!important;">
+        <p style="font-size:3rem;">🍃</p>
+        <h4>No rooms in this category yet</h4>
+        <p class="text-muted">Try a different filter or check back soon.</p>
+      </div>
+
+    </div>
+  </section>
+
+  
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="cozy-footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4 mb-3 mb-md-0">
+          <span class="footer-brand"><i class="bi bi-cup-hot-fill"></i> LofiStudy</span>
+          <p class="footer-tagline">Stay cozy. Stay focused.</p>
+        </div>
+        <div class="col-md-4 text-center mb-3 mb-md-0">
+          <nav class="footer-nav">
+            <a href="index.html">Home</a>
+            <a href="rooms.html">Rooms</a>
+            <a href="timer.html">Timer</a>
+            <a href="notes.html">Notes</a>
+            <a href="about.html">About</a>
+          </nav>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <p class="footer-copy">© 2026 LofiStudy. Made with ☕ & love.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/rooms.js"></script>
+</body>
+</html>
