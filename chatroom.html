@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Focus Studio - Premium Workspace</title>
+    <link rel="stylesheet" href="css/roomstyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="video-background-container">
+        <video autoplay loop muted playsinline class="video-background-layer" id="bgVideo">
+            <source src="background.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="video-dark-overlay"></div>
+
+    <header class="global-terminal-header">
+        <div class="brand-title">
+            <span class="live-pill"><span class="dot-pulse"></span> OPERATIONAL</span>
+            <h1>CORE//TERMINAL</h1>
+        </div>
+        <div class="control-utilities-group">
+            <button id="focusModeBtn" class="btn-utility-action" title="Toggle Focus Mode">
+                <i class="fa-solid fa-eye-slash"></i> <span>Focus Mode</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="app-workspace" id="mainWorkspaceContainer">
+        
+        <aside class="left-sidebar-panel">
+            <div class="dashboard-widget gemini-widget full-height-widget">
+                <h3><i class="fa-solid fa-brain text-purple"></i> Gemini Workspace AI</h3>
+                <div class="gemini-chat-timeline" id="geminiChatTimeline">
+                    <div class="ai-sys-msg">System link online. I am your private workspace assistant. Ask me anything about your tasks.</div>
+                </div>
+                <div class="gemini-input-row">
+                    <input type="text" id="geminiPromptInput" placeholder="Ask Gemini something..." autocomplete="off">
+                    <button type="button" id="geminiSendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </aside>
+
+        <main class="chat-container" id="centerChatWorkspaceBlock">
+            <header class="old-style-chat-header">
+                <div class="old-header-top-strip">
+                    <span class="live-indicator-text"><i class="fa-solid fa-circle text-emerald"></i> LIVE</span>
+                </div>
+                <div class="old-header-main-row">
+                    <div class="old-header-titles">
+                        <h2 id="roomTitleDisplay" class="old-title-txt">room_id</h2>
+                        <span id="roomTypeBadge" class="old-subtype-txt">public</span>
+                    </div>
+                    <button id="leaveRoomBtn" class="old-exit-btn">
+                        Exit Space <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </button>
+                </div>
+                <div class="old-participants-row">
+                    <span class="old-online-lbl"><i class="fa-solid fa-users"></i> Online:</span>
+                    <div id="participantsList" class="participants-list"></div>
+                </div>
+            </header>
+
+            <div class="chat-messages-wrapper">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="system-message">Welcome to your focus terminal. Room synchronization complete.</div>
+                </div>
+            </div>
+
+            <footer class="chat-input-area" id="chatInputLockerZone">
+                <form id="chatForm" class="chat-form">
+                    <input type="text" id="messageInput" placeholder="Type a message to the room..." autocomplete="off">
+                    <button type="submit" class="btn-message-submit">
+                        <span>Send</span> <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </footer>
+        </main>
+
+        <aside class="right-dashboard-panel">
+            
+            <div class="dashboard-widget pomodoro-widget">
+                <h3><i class="fa-solid fa-stopwatch text-orange"></i> Pomodoro Matrix</h3>
+                <div class="pomodoro-display-deck">
+                    <div id="pomodoroTimerDisplay" class="timer-countdown-compact">25:00</div>
+                    <div class="timer-controls-row">
+                        <button id="pomoStartBtn" class="btn-pomo-action start"><i class="fa-solid fa-play"></i> Start</button>
+                        <button id="pomoPauseBtn" class="btn-pomo-action pause"><i class="fa-solid fa-pause"></i> Pause</button>
+                        <button id="pomoResetBtn" class="btn-pomo-action reset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dashboard-widget spotify-widget">
+                <h3><i class="fa-brands fa-spotify text-emerald" id="playerDiskIcon"></i> Spotify Station</h3>
+                
+                <div id="spotifyAuthContainer" class="spotify-auth-container">
+                    <button id="connectSpotifyBtn" class="btn-spotify-connect-emerald"><i class="fa-brands fa-spotify"></i> Connect Spotify Account</button>
+                </div>
+
+                <div id="spotifyPlayerContainer" class="spotify-player-container hidden">
+                    <div class="spotify-meta-row">
+                        <div class="album-art-box">
+                            <img id="spotifyAlbumArt" src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=120&auto=format&fit=crop" alt="Cover">
+                        </div>
+                        <div class="track-meta">
+                            <span id="spotifyTrackName" class="track-title">Playback Standby</span>
+                            <span id="spotifyArtistName" class="track-artist">Local browser audio device ready</span>
+                        </div>
+                    </div>
+
+                    <div class="spotify-center-controls">
+                        <div class="player-controls">
+                            <button id="spShuffleBtn" class="btn-utility-toggle" title="Toggle Shuffle"><i class="fa-solid fa-shuffle"></i></button>
+                            <button id="spPrevBtn" class="btn-sp-control" title="Previous Track"><i class="fa-solid fa-backward-step"></i></button>
+                            <button id="spPlayBtn" class="btn-sp-control btn-sp-main" title="Play / Pause"><i class="fa-solid fa-play"></i></button>
+                            <button id="spNextBtn" class="btn-sp-control" title="Next Track"><i class="fa-solid fa-forward-step"></i></button>
+                            <button id="spRepeatBtn" class="btn-utility-toggle" title="Toggle Repeat Mode"><i class="fa-solid fa-repeat"></i></button>
+                        </div>
+                        <div class="playback-timeline-deck">
+                            <span id="timelineCurrent">0:00</span>
+                            <input type="range" id="timelineSlider" class="spotify-slider" min="0" max="100" value="0">
+                            <span id="timelineDuration">0:00</span>
+                        </div>
+                    </div>
+
+                    <div class="spotify-utilities-bar">
+                        <div class="volume-slider-pack">
+                            <i id="volumeIcon" class="fa-solid fa-volume-high"></i>
+                            <input type="range" id="volumeSlider" class="spotify-slider volume-bar-range" min="0" max="100" value="50">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-widget storage-widget" id="storageWidgetCabinetBox">
+                <h3><i class="fa-solid fa-box-archive text-orange"></i> Shared Files Locker</h3>
+                <div class="embedded-upload-trigger" id="fileUploadControlGroup">
+                    <button type="button" class="btn-file-upload-black" id="attachBtn">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> Upload Document to Cloud
+                    </button>
+                    <input type="file" id="hiddenFileInput" style="display: none;">
+                    <div id="uploadProgressContainer" class="upload-progress-bar hidden">
+                        <div id="uploadProgressBarFill"></div>
+                        <span id="uploadProgressText">Processing: 0%</span>
+                    </div>
+                </div>
+                <div id="rightSidebarFileCabinet" class="sidebar-file-cabinet">
+                    <div class="empty-cabinet-msg">No documents archived yet.</div>
+                </div>
+            </div>
+
+        </aside>
+    </div>
+
+    <div id="portalModalOverlay" class="portal-modal-overlay">
+        <div class="portal-modal-card">
+            <h1 class="portal-title">Master Your <span class="text-orange">Focus</span></h1>
+            <p class="portal-subtitle">Configure your identity credentials to synchronize workspace links.</p>
+            
+            <div class="portal-form-group">
+                <label><i class="fa-solid fa-user"></i> Identity Username</label>
+                <input type="text" id="portalUsername" placeholder="Enter your username...">
+            </div>
+
+            <div class="portal-form-group">
+                <label><i class="fa-solid fa-circle-nodes"></i> Target Room ID</label>
+                <input type="text" id="portalRoomId" placeholder="e.g., global_lounge">
+            </div>
+
+            <div class="portal-form-group">
+                <label><i class="fa-solid fa-shield-halved"></i> Room Privacy Type</label>
+                <select id="portalRoomType" class="portal-select">
+                    <option value="public" selected>Public (Open Space)</option>
+                    <option value="private">Private (Requires Passcode)</option>
+                </select>
+            </div>
+
+            <div class="portal-form-group hidden" id="portalCodeGroup">
+                <label><i class="fa-solid fa-lock"></i> Room Passcode</label>
+                <input type="password" id="portalRoomCode" placeholder="Enter 6-digit passcode..." maxlength="6">
+            </div>
+
+            <button id="portalSubmitBtn" class="btn-portal-submit">Enter Workspace Terminal →</button>
+            <a href="rooms.html"><button id="gobackhome" class="btn-portal-submit">← Go Back Home</button></a>
+        </div>
+    </div>
+
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/participants.js"></script>
+    <script type="module" src="js/chat.js?v=8.3.0"></script>
+</body>
+</html>

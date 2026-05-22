@@ -56,6 +56,15 @@ img { max-width: 100%; display: block; }
   transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
 }
 
+.cozy-nav-home {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1.1rem 0;
+  background: transparent;
+  transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+}
+
 .cozy-nav.scrolled {
   background: rgba(250, 246, 240, 0.96);
   backdrop-filter: blur(8px);
@@ -68,7 +77,19 @@ img { max-width: 100%; display: block; }
   font-family: 'Playfair Display', serif;
   font-size: 1.45rem;
   font-weight: 600;
-  color: var(--white-soft) !important;
+  color: var(--brown-dark) !important;
+  letter-spacing: -0.01em;
+  transition: color var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.brand-logo-home{
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--cream) !important;
   letter-spacing: -0.01em;
   transition: color var(--transition);
   display: flex;
@@ -81,7 +102,18 @@ img { max-width: 100%; display: block; }
 .cozy-nav .nav-link {
   font-size: 0.92rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.88) !important;
+  color: var(--text-mid) !important;
+  letter-spacing: 0.02em;
+  padding: 0.4rem 0.75rem !important;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), background var(--transition);
+  position: relative;
+}
+
+.cozy-nav-home .nav-link {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--cream) !important;
   letter-spacing: 0.02em;
   padding: 0.4rem 0.75rem !important;
   border-radius: var(--radius-sm);
@@ -223,7 +255,7 @@ img { max-width: 100%; display: block; }
 }
 
 .btn-cozy-outline {
-  background: transparent;
+  background: var(--text-mid);
   color: var(--white-soft);
   border: 1.5px solid rgba(255,255,255,0.55);
   border-radius: 50px;
@@ -238,7 +270,7 @@ img { max-width: 100%; display: block; }
 }
 
 .btn-cozy-outline:hover {
-  background: rgba(255,255,255,0.12);
+  background: var(--text-dark);
   border-color: rgba(255,255,255,0.85);
   transform: translateY(-2px);
   color: var(--white-soft);

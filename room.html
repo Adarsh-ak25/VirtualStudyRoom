@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Space - Chatroom</title>
+    <link rel="stylesheet" href="css/roomstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <video autoplay muted loop playsinline id="bgVideo">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-turning-pages-of-a-book-close-up-41585-large.mp4" type="video/mp4">
+    </video>
+
+    <div class="chat-container">
+        <header class="chat-header">
+            <div class="room-info">
+                <h2 id="roomTitleDisplay">Loading Room...</h2>
+                <span class="status-badge" id="roomTypeBadge">Public</span>
+            </div>
+            <button id="leaveRoomBtn" class="btn-leave">
+                <i class="fa-solid fa-right-from-bracket"></i> Leave Room
+            </button>
+        </header>
+
+        <section class="participants-section">
+            <span class="section-label"><i class="fa-solid fa-circle-dot pulse-icon"></i> Active Now:</span>
+            <div id="participantsList" class="participants-list">
+                </div>
+        </section>
+
+        <main class="chat-messages" id="chatMessages">
+            <div class="system-message">Securing connection matrix... Welcome to the room.</div>
+        </main>
+
+        <footer class="chat-input-area">
+            <form id="chatForm" class="chat-form">
+                <button type="button" class="btn-icon" id="attachBtn" title="Share Any File Type">
+                    <i class="fa-solid fa-paperclip"></i>
+                </button>
+                <input type="file" id="hiddenFileInput" style="display: none;" min-width="1">
+
+                <input type="text" id="messageInput" placeholder="Type a message to the space..." autocomplete="off">
+                
+                <button type="submit" class="btn-send">
+                    <span>Send</span> <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
+            <div id="uploadProgressContainer" class="upload-progress-bar hidden">
+                <div id="uploadProgressBarFill"></div>
+                <span id="uploadProgressText">Uploading asset: 0%</span>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/participants.js"></script>
+    <script type="module" src="js/chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+/* ==========================================================================
+   1. CORE TOKENS & DOCUMENT OVERRIDES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-main: #0a0908;           
+    --card-bg: rgba(24, 21, 19, 0.4); /* Refined glass transparency baseline */
+    --accent-orange: #ff5722;     
+    --accent-purple: #9d4edd;     
+    --accent-emerald: #1ed760;    
+    --accent-teal: #2ec4b6;       
+    --text-white: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.45);
+    --text-bone: #f5f2eb;
+    --border-subtle: rgba(255, 255, 255, 0.08); 
+    --glass-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.55);
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background: var(--bg-main) !important;
+    color: var(--text-white);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   HIGH-VISIBILITY VIDEO BACKGROUND CONFIGURATIONS
+   ========================================================================== */
+.video-background-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 0; 
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.video-background-layer {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-dark-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: linear-gradient(135deg, rgba(10, 9, 8, 0.4), rgba(16, 12, 12, 0.35)); /* Vibrant video visibility */
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.global-terminal-header,
+.app-workspace,
+.portal-modal-overlay {
+    position: relative;
+    z-index: 2; 
+}
+
+/* Header Navbar Banner */
+.global-terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    height: 65px;
+}
+.brand-title { display: flex; align-items: center; gap: 12px; }
+.brand-title h1 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 1px; }
+.control-utilities-group { display: flex; align-items: center; gap: 12px; }
+
+.btn-utility-action {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-white);
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(10px);
+}
+.btn-utility-action:hover { background: var(--text-white); color: #000; }
+
+.live-pill {
+    background: rgba(46, 196, 182, 0.06); color: var(--accent-teal); border: 1px solid rgba(46, 196, 182, 0.12);
+    padding: 4px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: 700; display: flex; align-items: center; gap: 6px;
+}
+.dot-pulse { width: 5px; height: 5px; background-color: var(--accent-teal); border-radius: 50%; animation: pulseGlow 1.8s infinite; }
+
+/* ==========================================================================
+   2. TRIPLE COLUMN GRID ARRANGEMENT
+   ========================================================================== */
+.app-workspace {
+    display: flex;
+    width: 100vw;
+    height: calc(100vh - 65px);
+    padding: 20px;
+    gap: 20px;
+}
+
+.left-sidebar-panel {
+    width: 330px;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.chat-container {
+    flex: 1;
+    background: var(--card-bg); 
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--border-subtle);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+    box-shadow: var(--glass-shadow);
+}
+
+.right-dashboard-panel {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: 100%;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+.right-dashboard-panel::-webkit-scrollbar { width: 0px; }
+
+.full-height-widget { height: 100% !important; display: flex; flex-direction: column; }
+.dashboard-widget { 
+    background: var(--card-bg); 
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--border-subtle);
+    border-radius: 24px; 
+    padding: 18px; 
+    display: flex; 
+    flex-direction: column; 
+    box-shadow: var(--glass-shadow);
+}
+.dashboard-widget h3 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+
+/* HIGH-END NEON PURPLE SMOOTH BLUR LAYOUTS FOR GEMINI TERMINAL UNIT */
+.gemini-widget {
+    background: rgba(24, 18, 32, 0.45) !important;
+    border: 1px solid rgba(157, 78, 221, 0.35) !important;
+    box-shadow: 0 8px 32px 0 rgba(157, 78, 221, 0.1), var(--glass-shadow);
+}
+
+/* Center Room Header */
+.old-style-chat-header {
+    padding: 16px 24px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.old-header-top-strip { display: flex; }
+.live-indicator-text { font-size: 0.65rem; font-weight: 700; color: var(--accent-teal); letter-spacing: 0.5px; text-transform: uppercase; }
+
+.old-header-main-row { display: flex; justify-content: space-between; align-items: flex-start; width: 100%; }
+.old-header-titles { display: flex; flex-direction: column; }
+.old-title-txt { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--text-white); text-transform: lowercase; }
+.old-subtype-txt { font-size: 0.8rem; color: var(--text-muted); margin-top: -2px; font-weight: 500; }
+
+.old-exit-btn { background: transparent; border: none; color: var(--text-muted); font-size: 0.8rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: color 0.15s; }
+.old-exit-btn:hover { color: var(--danger-red); }
+
+.old-participants-row { display: flex; align-items: center; gap: 8px; border-top: 1px solid rgba(255,255,255,0.03); padding-top: 6px; margin-top: 4px; }
+.old-online-lbl { font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+.participant-pill { background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border-subtle); padding: 2px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; }
+
+/* Conversation Timeline content wrapper lines */
+.chat-messages-wrapper { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+.chat-messages { flex: 1; padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; background: rgba(0, 0, 0, 0.15); }
+
+.message-node { max-width: 75%; padding: 12px 16px; border-radius: 16px; line-height: 1.6; font-size: 0.9rem; }
+.message-node.outgoing { align-self: flex-end; background-color: rgba(255, 87, 34, 0.14); border: 1px solid rgba(255, 87, 34, 0.25); border-bottom-right-radius: 4px; }
+.message-node.outgoing .message-sender { color: var(--accent-orange); }
+.message-node.incoming { align-self: flex-start; background-color: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-subtle); border-bottom-left-radius: 4px; }
+.message-sender { display: block; font-size: 0.72rem; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; }
+.message-meta { display: block; text-align: right; font-size: 0.68rem; color: var(--text-muted); margin-top: 6px; }
+
+.chat-input-area { padding: 16px 24px; background: rgba(0, 0, 0, 0.35); border-top: 1px solid var(--border-subtle); position: relative; }
+.chat-form { display: flex; align-items: center; gap: 12px; }
+.chat-form input[type="text"] { flex: 1; height: 44px; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 0 16px; color: var(--text-white); font-size: 0.9rem; outline: none; }
+.chat-form input[type="text"]:focus { border-color: var(--accent-orange); }
+.btn-message-submit { height: 44px; padding: 0 20px; background: var(--accent-orange); color: white; border-radius: 12px; font-weight: 700; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+/* Pomodoro Uniform Font Settings */
+.pomodoro-widget { flex-shrink: 0; }
+.pomodoro-display-deck { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2px 0; }
+
+.timer-countdown-compact {
+    font-family: monospace; 
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: var(--text-white);
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+.timer-controls-row { display: flex; align-items: center; gap: 8px; width: 100%; }
+.btn-pomo-action {
+    flex: 1; height: 32px; border: none; border-radius: 10px; font-size: 0.78rem; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 4px; background-color: rgba(255,255,255,0.05); border: 1px solid var(--border-subtle); color: var(--text-bone);
+}
+.btn-pomo-action.start { background-color: var(--accent-orange); border-color: transparent; color: white; }
+
+/* Spotify Player Component Core Elements */
+.spotify-widget { flex-shrink: 0; }
+.btn-spotify-connect-emerald { 
+    background-color: var(--accent-emerald) !important;
+    color: #0c0b0a !important; 
+    height: 38px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; gap: 6px; border: none; cursor: pointer; display: inline-flex; align-items: center; width: 100%; justify-content: center; box-shadow: 0 4px 12px rgba(30, 215, 96, 0.25);
+}
+
+.spotify-player-container { display: flex; flex-direction: column; gap: 14px; background: rgba(0,0,0,0.3); padding: 14px; border-radius: 16px; border: 1px solid var(--border-subtle); margin-top: 6px; }
+.spotify-meta-row { display: flex; align-items: center; gap: 12px; }
+.album-art-box { width: 44px; height: 44px; border-radius: 6px; overflow: hidden; background: #000; flex-shrink: 0; }
+.album-art-box img { width: 100%; height: 100%; object-fit: cover; }
+.track-meta { display: flex; flex-direction: column; overflow: hidden; flex: 1; }
+.track-title { font-size: 0.85rem; font-weight: 700; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color: var(--text-bone); }
+.track-artist { font-size: 0.7rem; color: var(--text-muted); margin-top: 1px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.spotify-center-controls { display: flex; flex-direction: column; gap: 10px; align-items: center; width: 100%; }
+.player-controls { display: flex; align-items: center; justify-content: center; gap: 16px; width: 100%; }
+
+.btn-sp-control { background: transparent; border: none; color: #b3b3b3; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.btn-sp-control.btn-sp-main { background: var(--text-white); color: #000; width: 38px; height: 38px; border-radius: 50%; font-size: 0.95rem; }
+.playback-timeline-deck { display: flex; align-items: center; width: 100%; gap: 8px; font-family: monospace; font-size: 0.7rem; color: var(--text-muted); }
+
+.spotify-slider { flex: 1; -webkit-appearance: none; appearance: none; height: 4px; background: #4c4c4c; border-radius: 2px; outline: none; cursor: pointer; border: none; width: 100%; }
+.spotify-slider::-webkit-slider-runnable-track { background: transparent !important; border: none !important; height: 4px; }
+.spotify-slider::-moz-range-track { background: transparent !important; border: none !important; height: 4px; }
+
+/* Webkit Range Track Center Alignment Overrides */
+.spotify-slider::-webkit-slider-thumb { 
+    -webkit-appearance: none; appearance: none; 
+    width: 10px; height: 10px; 
+    border-radius: 50%; background: var(--text-white); 
+    opacity: 0; 
+    margin-top: -3px; /* FIXED THUMB: Centers white ball dial flawlessly on the horizontal green background lines */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    transition: opacity 0.1s linear;
+}
+.spotify-slider::-moz-range-thumb {
+    border: none; width: 10px; height: 10px; border-radius: 50%; background: var(--text-white); opacity: 0; box-shadow: 0 1px 3px rgba(0,0,0,0.6); transition: opacity 0.1s linear;
+}
+.spotify-player-container:hover .spotify-slider::-webkit-slider-thumb,
+.spotify-player-container:hover .spotify-slider::-moz-range-thumb { opacity: 1; }
+
+.spotify-utilities-bar { display: flex; align-items: center; justify-content: flex-end; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.04); margin-top: 2px; width: 100%; }
+.volume-slider-pack { display: flex; align-items: center; gap: 8px; width: 110px; color: #b3b3b3; font-size: 0.8rem; padding-right: 2px; }
+.volume-bar-range { flex: 1; }
+
+/* Gemini AI Chat Feed */
+.gemini-chat-timeline { flex: 1; overflow-y: auto; background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 14px; margin-top: 12px; display: flex; flex-direction: column; gap: 12px; }
+.ai-sys-msg { text-align: center; color: var(--text-muted); font-size: 0.75rem; font-style: italic; }
+.ai-bubble { padding: 10px 14px; border-radius: 14px; font-size: 0.85rem; line-height: 1.5; max-width: 85%; word-wrap: break-word; }
+.ai-bubble.user { align-self: flex-end; background-color: rgba(255,255,255,0.06); color: var(--text-bone); border-bottom-right-radius: 4px; border: 1px solid var(--border-subtle); }
+.ai-bubble.bot { align-self: flex-start; background-color: rgba(157, 78, 221, 0.06); border: 1px solid rgba(157, 78, 221, 0.15); color: var(--text-white); white-space: pre-wrap; border-bottom-left-radius: 4px; }
+.gemini-input-row { display: flex; gap: 8px; margin-top: 12px; }
+.gemini-input-row input { flex: 1; height: 40px; background: rgba(0,0,0,0.4); border: 1px solid var(--border-subtle); border-radius: 10px; padding: 0 12px; color: var(--text-white); font-size: 0.85rem; outline: none; }
+.gemini-input-row button { width: 40px; height: 40px; background-color: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle); color: var(--accent-purple); border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; border: none; }
+
+/* File Locker (Pure matte-black inner structure overrides old layout fragments) */
+.storage-widget { flex: 1; min-height: 160px; }
+.sidebar-file-cabinet { display: flex; flex-direction: column; gap: 6px; overflow-y: auto; margin-top: 6px; flex: 1; }
+.empty-cabinet-msg { color: var(--text-muted); font-size: 0.75rem; font-style: italic; text-align: center; margin-top: 6px; }
+.cabinet-file-card { display: flex; align-items: center; gap: 10px; background-color: #0a0908 !important; border: 1px solid var(--border-subtle); padding: 8px 12px; border-radius: 10px; }
+.cabinet-file-info { display: flex; flex-direction: column; overflow: hidden; flex: 1; }
+.cabinet-file-name { font-size: 0.78rem; font-weight: 600; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; color: var(--text-bone); }
+.cabinet-file-sender { font-size: 0.65rem; color: var(--accent-orange); }
+
+.btn-file-upload-black {
+    width: 100%; height: 36px; background-color: #0a0908 !important; color: var(--text-bone); border: 1px solid var(--border-subtle); border-radius: 10px; font-size: 0.8rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; transition: background 0.2s;
+}
+.btn-file-upload-black:hover { background-color: #161311 !important; }
+
+/* HIGH-END PORTAL GLASSMORPHISM CARDS (Image_7de54e Design Corrections) */
+.portal-modal-overlay { 
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100vw; height: 100vh; 
+    background-color: rgba(10, 9, 8, 0.65); 
+    backdrop-filter: blur(35px) saturate(200%); 
+    z-index: 2000; 
+    display: flex; justify-content: center; align-items: center; 
+}
+.portal-modal-card { 
+    width: 90%; max-width: 440px; 
+    background: rgba(24, 21, 19, 0.45); 
+    border: 1px solid rgba(255, 255, 255, 0.12); 
+    border-radius: 28px; 
+    padding: 36px; 
+    display: flex; flex-direction: column; gap: 20px; 
+    box-shadow: var(--glass-shadow); 
+}
+.portal-title { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; text-align: center; }
+.portal-subtitle { color: var(--text-muted); font-size: 0.85rem; text-align: center; line-height: 1.5; }
+.portal-form-group { display: flex; flex-direction: column; gap: 8px; }
+.portal-form-group label { font-size: 0.8rem; font-weight: 700; color: var(--text-white); text-transform: uppercase; opacity: 0.8; }
+.portal-form-group input, .portal-select { width: 100%; height: 48px; background-color: rgba(0,0,0,0.5); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 0 16px; color: #fff; outline: none; }
+.portal-select option { background-color: #1a1716; color: #fff; }
+.btn-portal-submit { width: 100%; height: 50px; background-color: var(--accent-orange); color: white; border-radius: 14px; font-size: 0.95rem; font-weight: 700; border: none; cursor: pointer; box-shadow: 0 8px 24px rgba(255, 87, 34, 0.25); }
+
+/* ==========================================================================
+   3. FOCUS MODE INTERACTIVE STATE LOCKDOWNS
+   ========================================================================== */
+.hidden { display: none !important; }
+
+body.focus-mode-active .video-dark-overlay { opacity: 0.95 !important; }
+body.focus-mode-active .pomodoro-widget { transform: scale(1.02); box-shadow: 0 0 30px rgba(255, 87, 34, 0.15); }
+
+body.focus-mode-active #centerChatWorkspaceBlock, 
+body.focus-mode-active #fileUploadControlGroup { pointer-events: none !important; position: relative !important; }
+
+body.focus-mode-active #centerChatWorkspaceBlock::after {
+    content: "🔒 CHAT LOCKED IN STUDY FOCUS MODE";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(12, 11, 10, 0.95); backdrop-filter: blur(12px);
+    color: var(--accent-orange); font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; border-radius: 24px;
+}
+body.focus-mode-active #fileUploadControlGroup::after {
+    content: "🔒 UPLOADS LOCKED";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(12, 11, 10, 0.96); backdrop-filter: blur(6px);
+    color: var(--accent-orange); font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; justify-content: center; border-radius: 10px;
+}
+
+.upload-progress-bar { margin-top: 12px; background: #0a0908; border-radius: 6px; height: 16px; position: relative; overflow: hidden; border: 1px solid var(--border-subtle); }
+#uploadProgressBarFill { background: var(--accent-orange); width: 0%; height: 100%; }
+#uploadProgressText { position: absolute; width: 100%; text-align: center; top: 0; left: 0; font-size: 0.72rem; font-weight: 700; line-height: 14px; color: #fff; }
+
+.gemini-chat-timeline::-webkit-scrollbar, .sidebar-file-cabinet::-webkit-scrollbar, .chat-messages::-webkit-scrollbar, .spotify-catalog-list::-webkit-scrollbar { width: 4px; }
+.gemini-chat-timeline::-webkit-scrollbar-thumb, .sidebar-file-cabinet::-webkit-scrollbar-thumb, .chat-messages::-webkit-scrollbar-thumb, .spotify-catalog-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 10px; }
+
+@media (max-width: 1100px) {
+    .app-workspace { flex-direction: column; overflow-y: auto; height: auto; }
+    .left-sidebar-panel, .right-dashboard-panel { width: 100%; }
+    .chat-container { height: 60vh; }
+}
