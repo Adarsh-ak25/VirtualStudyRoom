@@ -1,18 +1,15 @@
-/* ============================================================
-   LofiStudy — timer.js
-   Full Pomodoro timer: countdown, ring, sessions, stats, alerts
-   ============================================================ */
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ---------- Navbar scroll ---------- */
+
   const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
 
-  /* ---------- Reveal animations ---------- */
+ 
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
@@ -25,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 
-  /* ---------- Timer state ---------- */
   const MODES = {
     pomodoro : { label: 'Focus Time',   minutes: 25, color: '#d4854a' },
     short    : { label: 'Short Break',  minutes: 5,  color: '#8b6845' },
@@ -44,11 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let totalBreaks       = 0;
   let sessionDotIndex   = 0;
 
-  // Circumference of r=96 circle
-  const CIRCUMFERENCE = 2 * Math.PI * 96; // ≈ 603.2
+  
+  const CIRCUMFERENCE = 2 * Math.PI * 96; 
 
 
-  /* ---------- DOM refs ---------- */
   const timerDisplay  = document.getElementById('timerDisplay');
   const sessionLabel  = document.getElementById('sessionLabel');
   const progressRing  = document.getElementById('progressRing');
@@ -67,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const statBreaks    = document.getElementById('statBreaks');
 
 
-  /* ---------- Ring helpers ---------- */
+
   const setRingColor = (color) => {
     progressRing.style.stroke = color;
   };
@@ -86,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
 
-  /* ---------- Display helpers ---------- */
   const formatTime = (secs) => {
     const m = Math.floor(secs / 60).toString().padStart(2, '0');
     const s = (secs % 60).toString().padStart(2, '0');
@@ -104,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
       sessionDots[sessionDotIndex].classList.add('done');
       sessionDotIndex++;
     }
-    // reset dots after 4 sessions
     if (sessionDotIndex >= sessionDots.length) {
       setTimeout(() => {
         sessionDots.forEach(d => d.classList.remove('done'));
@@ -120,7 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
 
-  /* ---------- Button states ---------- */
   const setRunningState = (running) => {
     isRunning = running;
     startBtn.disabled = running;
@@ -138,14 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
 
-  /* ---------- Alert banner ---------- */
   const showAlert = (icon, title, msg) => {
     alertIcon.textContent  = icon;
     alertTitle.textContent = title;
     alertMsg.textContent   = msg;
     sessionAlert.classList.add('show');
 
-    // auto-hide after 6s
+   
     setTimeout(() => sessionAlert.classList.remove('show'), 6000);
   };
 
@@ -154,7 +145,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Session complete ---------- */
   const onSessionComplete = () => {
     clearInterval(intervalId);
     intervalId = null;
@@ -174,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ? 'Amazing — 4 sessions done! Take a long break. 🌿'
           : 'Great work! Time for a short break. ☕'
       );
-      // auto-switch to appropriate break
+     
       const nextMode = completedSessions % 4 === 0 ? 'long' : 'short';
       setTimeout(() => switchMode(nextMode), 1000);
     } else {
@@ -191,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
 
-  /* ---------- Countdown tick ---------- */
+  
   const tick = () => {
     if (remainingSeconds <= 0) {
       onSessionComplete();
@@ -202,7 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
 
-  /* ---------- Mode switching ---------- */
   const switchMode = (mode) => {
     // stop any running timer
     if (intervalId) {
@@ -221,12 +210,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initRing();
 
-    // update active tab
+   
     document.querySelectorAll('.timer-tab').forEach(tab => {
       tab.classList.toggle('active', tab.dataset.mode === mode);
     });
 
-    // ring entrance animation
+    
     timerRing.style.transform  = 'scale(0.95)';
     timerRing.style.transition = 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)';
     setTimeout(() => {
@@ -235,7 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
 
-  /* ---------- Button events ---------- */
   startBtn.addEventListener('click', () => {
     if (isRunning) return;
     setRunningState(true);
@@ -262,13 +250,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Mode tab clicks ---------- */
   document.querySelectorAll('.timer-tab').forEach(tab => {
     tab.addEventListener('click', () => switchMode(tab.dataset.mode));
   });
 
 
-  /* ---------- Keyboard shortcuts ---------- */
+ 
   document.addEventListener('keydown', (e) => {
     // space = start / pause
     if (e.code === 'Space' && e.target.tagName !== 'BUTTON') {
@@ -279,14 +266,14 @@ document.addEventListener('DOMContentLoaded', () => {
         startBtn.click();
       }
     }
-    // r = reset
+  
     if (e.code === 'KeyR' && e.target.tagName !== 'INPUT') {
       resetBtn.click();
     }
   });
 
 
-  /* ---------- Toast helper ---------- */
+
   const showToast = (msg) => {
     let toast = document.querySelector('.cozy-toast');
     if (!toast) {
@@ -301,7 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
 
-  /* ---------- Button press micro-interaction ---------- */
   [startBtn, pauseBtn, resetBtn].forEach(btn => {
     btn.addEventListener('mousedown', () => {
       if (!btn.disabled) btn.style.transform = 'scale(0.95)';
@@ -311,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Init ---------- */
+ 
   initRing();
   updateDisplay();
   showToast('⏱ Tip: Press Space to start / pause the timer.');

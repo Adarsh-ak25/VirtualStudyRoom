@@ -1,18 +1,15 @@
-/* ============================================================
-   LofiStudy — rooms.js
-   Filter tabs, join modal, live counts, card animations
-   ============================================================ */
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ---------- Navbar scroll effect ---------- */
+
   const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
 
-  /* ---------- Fade-card reveal on load ---------- */
+  
   const fadeCards = document.querySelectorAll('.fade-card');
 
   const cardObserver = new IntersectionObserver((entries) => {
@@ -27,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   fadeCards.forEach(card => cardObserver.observe(card));
 
 
-  /* ---------- Filter tabs ---------- */
+  
   const filterTabs  = document.querySelectorAll('.filter-tab');
   const roomItems   = document.querySelectorAll('.room-item');
   const emptyState  = document.getElementById('emptyState');
@@ -56,13 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // show/hide empty state
+      
       emptyState.style.display = visible === 0 ? 'block' : 'none';
     });
   });
 
 
-  /* ---------- Join modal ---------- */
   const modal      = document.getElementById('roomModal');
   const modalName  = document.getElementById('modalRoomName');
   const modalIcon  = document.getElementById('modalIcon');
@@ -120,8 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Live online count flicker ---------- */
-  // Gently randomise counts every 8s to simulate real activity
+  
   const updateCounts = () => {
     document.querySelectorAll('.room-count').forEach(el => {
       const current = parseInt(el.textContent, 10);
@@ -138,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // also update total
+   
     const total = Array.from(document.querySelectorAll('.room-count'))
       .reduce((sum, el) => sum + parseInt(el.textContent, 10), 0);
     const totalEl = document.getElementById('totalOnline');
@@ -148,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(updateCounts, 8000);
 
 
-  /* ---------- Card hover tilt ---------- */
+  
   document.querySelectorAll('.room-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
@@ -169,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Join button press feedback ---------- */
+  
   document.querySelectorAll('.join-btn').forEach(btn => {
     btn.addEventListener('mousedown', () => {
       btn.style.transform = 'scale(0.96)';
@@ -183,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Toast helper (reusable) ---------- */
+ 
   const showToast = (msg) => {
     let toast = document.querySelector('.cozy-toast');
     if (!toast) {
@@ -196,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => toast.classList.remove('show'), 3000);
   };
 
-  // Show a welcome toast shortly after page load
+ 
   setTimeout(() => showToast('☕  18 study rooms are open right now!'), 1200);
 
 });

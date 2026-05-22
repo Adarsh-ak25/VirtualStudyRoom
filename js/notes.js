@@ -1,18 +1,15 @@
-/* ============================================================
-   LofiStudy — notes.js
-   Sticky notes: add, delete, persist, colour picker, animations
-   ============================================================ */
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ---------- Navbar scroll ---------- */
+ 
   const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 
 
-  /* ---------- DOM refs ---------- */
+
   const toggleFormBtn = document.getElementById('toggleFormBtn');
   const emptyAddBtn   = document.getElementById('emptyAddBtn');
   const addNoteForm   = document.getElementById('addNoteForm');
@@ -27,12 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const swatches      = document.querySelectorAll('.color-swatch');
 
 
-  /* ---------- State ---------- */
+  
   let selectedColor = 'note-yellow';
   let notes         = loadNotes();
 
 
-  /* ---------- LocalStorage helpers ---------- */
+ 
   function loadNotes() {
     try {
       return JSON.parse(localStorage.getItem('lofistudy_notes')) || [];
@@ -45,12 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       localStorage.setItem('lofistudy_notes', JSON.stringify(notes));
     } catch {
-      // storage full or unavailable — degrade gracefully
+      
     }
   }
 
 
-  /* ---------- Colour picker ---------- */
   swatches.forEach(swatch => {
     swatch.addEventListener('click', () => {
       swatches.forEach(s => s.classList.remove('selected'));
@@ -60,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Character counter ---------- */
+ 
   noteInput.addEventListener('input', () => {
     const len = noteInput.value.length;
     charCount.textContent = `${len} / 300`;
@@ -68,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Toggle add-note form ---------- */
+ 
   const openForm = () => {
     addNoteForm.classList.add('open');
     toggleFormBtn.innerHTML = '<i class="bi bi-x-lg"></i> Cancel';
@@ -93,13 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   emptyAddBtn.addEventListener('click', openForm);
 
-  // close form on Escape
+ 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && addNoteForm.classList.contains('open')) closeForm();
   });
 
 
-  /* ---------- Create note object ---------- */
+  
   const createNoteObj = (text, color) => ({
     id   : Date.now().toString(),
     text,
@@ -108,13 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Render a single note element ---------- */
   const renderNote = (note) => {
     const el = document.createElement('div');
     el.className  = `sticky-note ${note.color}`;
     el.dataset.id = note.id;
 
-    // slight random tilt per note (deterministic from id)
     const tilt = ((parseInt(note.id.slice(-3), 10) % 7) - 3) * 0.6;
     el.style.transform = `rotate(${tilt}deg)`;
 
@@ -132,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
-    // live-edit: save on input
+    
     const textarea = el.querySelector('.note-text');
     textarea.addEventListener('input', () => {
       const idx = notes.findIndex(n => n.id === note.id);
@@ -142,7 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // hover tilt reset
     el.addEventListener('mouseenter', () => {
       el.style.transform  = 'rotate(0deg) translateY(-4px)';
       el.style.transition = 'transform 0.25s ease, box-shadow 0.25s ease';
@@ -156,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
 
-  /* ---------- Add note ---------- */
+  
   const addNote = () => {
     const text = noteInput.value.trim();
     if (!text) {
@@ -165,13 +158,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const note = createNoteObj(text, selectedColor);
-    notes.unshift(note); // newest first
+    notes.unshift(note);
     saveNotes();
 
     const el = renderNote(note);
     notesBoard.prepend(el);
 
-    // entrance animation
+ 
     requestAnimationFrame(() => {
       el.style.opacity   = '0';
       el.style.transform = 'scale(0.7) rotate(-4deg)';
@@ -196,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Delete note ---------- */
+  
   notesBoard.addEventListener('click', e => {
     const btn = e.target.closest('.delete-note');
     if (!btn) return;
@@ -216,7 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Clear all ---------- */
   clearAllBtn.addEventListener('click', () => {
     if (notes.length === 0) return;
 
@@ -238,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Update UI state ---------- */
+  
   const updateUI = () => {
     const count = notes.length;
 
@@ -253,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
 
-  /* ---------- Initial render ---------- */
+
   const renderAll = () => {
     notesBoard.innerHTML = '';
     notes.forEach((note, i) => {
@@ -275,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAll();
 
 
-  /* ---------- Helpers ---------- */
+ 
   const shakeInput = () => {
     noteInput.style.transition = 'transform 0.1s ease';
     noteInput.style.transform  = 'translateX(-6px)';
@@ -301,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toast._timer = setTimeout(() => toast.classList.remove('show'), 3000);
   };
 
-  // welcome toast
+
   setTimeout(() => {
     if (notes.length === 0) {
       showToast('📝 Add your first sticky note to get started!');

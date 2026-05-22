@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   window.addEventListener('scroll', handleNavScroll, { passive: true });
-  handleNavScroll(); // run on load
+  handleNavScroll();
 
 
-  /* ---------- Smooth scroll for any in-page anchor ---------- */
+ 
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
       const target = document.querySelector(anchor.getAttribute('href'));
@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Intersection Observer — fade-card reveal ---------- */
   const fadeCards = document.querySelectorAll('.fade-card');
 
   const cardObserver = new IntersectionObserver((entries) => {
@@ -46,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   fadeCards.forEach(card => cardObserver.observe(card));
 
 
-  /* ---------- Intersection Observer — generic .reveal ---------- */
+  
   const reveals = document.querySelectorAll('.reveal');
 
   const revealObserver = new IntersectionObserver((entries) => {
@@ -61,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
   reveals.forEach(el => revealObserver.observe(el));
 
 
-  /* ---------- Animated stats counter ---------- */
+
   const statNumbers = document.querySelectorAll('.stat-number');
 
   const animateCount = (el) => {
@@ -96,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
   statNumbers.forEach(el => statsObserver.observe(el));
 
 
-  /* ---------- Feature card tilt on mouse move ---------- */
+
   document.querySelectorAll('.feature-card').forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
@@ -117,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Hero CTA button ripple ---------- */
+
   document.querySelectorAll('.btn-cozy-primary, .btn-cozy-outline').forEach(btn => {
     btn.addEventListener('click', function (e) {
       const circle = document.createElement('span');
@@ -137,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pointer-events: none;
       `;
 
-      // inject keyframe once
+     
       if (!document.getElementById('ripple-style')) {
         const style = document.createElement('style');
         style.id = 'ripple-style';
@@ -153,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ---------- Mood quote fade-in on scroll ---------- */
   const moodBanner = document.querySelector('.mood-banner');
   if (moodBanner) {
     moodBanner.style.opacity = '0';
@@ -170,7 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* ---------- Navbar active link highlight ---------- */
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.cozy-nav .nav-link').forEach(link => {
     const linkPage = link.getAttribute('href');
