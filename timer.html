@@ -14,7 +14,7 @@
 <script src="js/timer.js"></script>
 <body>
 
-  <!-- NAVBAR -->
+ 
   <nav class="navbar navbar-expand-lg cozy-nav scrolled" id="mainNav">
     <div class="container">
       <a class="navbar-brand brand-logo nav-dark" href="index.html">
@@ -35,11 +35,11 @@
     </div>
   </nav>
 
-  <!-- TIMER PAGE -->
+  
   <main class="timer-page">
     <div class="container">
 
-      <!-- Page heading -->
+     
       <div class="text-center mb-5 reveal">
         <p class="section-tag">stay on track</p>
         <h1>Pomodoro <em>Timer</em></h1>
@@ -48,18 +48,18 @@
 
       <div class="row justify-content-center g-4 align-items-start">
 
-        <!-- Main timer card -->
+       
         <div class="col-lg-5">
           <div class="timer-card reveal">
 
-            <!-- Mode tabs -->
+          
             <div class="timer-tabs" role="tablist">
               <button class="timer-tab active" data-mode="pomodoro"  data-minutes="25" role="tab">Pomodoro</button>
               <button class="timer-tab"         data-mode="short"    data-minutes="5"  role="tab">Short Break</button>
               <button class="timer-tab"         data-mode="long"     data-minutes="15" role="tab">Long Break</button>
             </div>
 
-            <!-- SVG ring timer -->
+            
             <div class="timer-ring" id="timerRing">
               <svg viewBox="0 0 220 220" width="220" height="220" xmlns="http://www.w3.org/2000/svg">
                 <circle class="track"    cx="110" cy="110" r="96" />
@@ -71,7 +71,7 @@
               </div>
             </div>
 
-            <!-- Controls -->
+          
             <div class="timer-controls">
               <button class="btn btn-cozy-primary" id="startBtn">
                 <i class="bi bi-play-fill"></i> Start
@@ -84,7 +84,7 @@
               </button>
             </div>
 
-            <!-- Session dots -->
+           
             <div class="timer-sessions">
               <span>Sessions today:</span>
               <span class="session-dots" id="sessionDots">
@@ -95,13 +95,13 @@
               </span>
             </div>
 
-          </div><!-- /timer-card -->
+          </div>
         </div>
 
-        <!-- Side panel -->
+       
         <div class="col-lg-4">
 
-          <!-- How it works -->
+       
           <div class="timer-info-card reveal">
             <h5><i class="bi bi-info-circle"></i> How it works</h5>
             <ul class="timer-steps">
@@ -124,7 +124,7 @@
             </ul>
           </div>
 
-          <!-- Today's stats -->
+         
           <div class="timer-info-card reveal mt-3">
             <h5><i class="bi bi-bar-chart-line"></i> Today's Focus</h5>
             <div class="focus-stats">
@@ -143,7 +143,7 @@
             </div>
           </div>
 
-          <!-- Quick navigate -->
+          
           <div class="timer-info-card reveal mt-3 text-center">
             <p class="caveat-text" style="font-size:1.15rem;color:var(--brown);">
               "Flow state begins in 25 minutes."
@@ -159,7 +159,7 @@
     </div>
   </main>
 
-  <!-- Session complete alert banner -->
+
   <div class="session-alert" id="sessionAlert">
     <div class="session-alert-inner">
       <span class="session-alert-icon" id="alertIcon">🎉</span>
@@ -173,7 +173,6 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer class="cozy-footer">
     <div class="container">
       <div class="row align-items-center">
